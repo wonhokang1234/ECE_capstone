@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<!--
+ Hyperspace by HTML5 UP
+ html5up.net | @ajlkn
+ Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+ <head>
+ <title>My-Flection</title>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <link rel="stylesheet" href="assets/css/main.css" />
+ </head>
+ <body>
+
+ <!-- Sidebar 
+ <section id="sidebar">
+ <div class="inner">
+ <nav>
+ <ul>
+ <li><a href="#intro">Welcome</a></li>
+ <li><a href="#one">Who we are</a></li>
+ <li><a href="#two">What we do</a></li>
+ <li><a href="#three">Get in touch</a></li>
+ </ul>
+ </nav>
+ </div>
+ </section>
+-->
+ <!-- Wrapper -->
+ <div id="wrapper">
+
+ <!-- Intro -->
+ <section id="intro" class="wrapper style1 fullscreen fade-up">
+ <a href="#" class="image"><img src="images/logo.png" alt="" width="500" height="310" data-position="center center" /></a>
+
+ <a class="weatherwidget-io" href="https://forecast7.com/en/40d44n80d00/pittsburgh/?unit=us" data-label_1="PITTSBURGH" data-label_2="WEATHER" data-theme="original" data-basecolor="rgba(81, 30, 123, 0)" >PITTSBURGH WEATHER</a>
+ <script>
+ !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+ </script>
+ 
+ <button onclick="displayTime()">Display Time</button>
+ <script>
+   const {app} = require('electron');
+   function displayTime(){
+       console.log("button clicked");
+       //let fixedURL = path.join(process.resourcesPath, '/');
+       //let cmd = `${fixedURL}test.sh`;
+       let cmd = './test.sh';
+       //script file should be located inside the electron when compiling
+       
+       let completeMessage = 'This is the message';
+       backgroundProcess(cmd, completeMessage);
+   }
+
+   function getCommandOutput() { return document.getElementById("command-output");  };
+   function getStatus()      { return document.getElementById("status");  };
+
+
+   function appendOutput(msg) { getCommandOutput().value += (msg+'\n'); };
+   function setStatus(msg)    { getStatus().innerHTML = msg; };
+   
+   function backgroundProcess(cmd, completeMessage){
+       const process = require('child_process');
+       
+       var child = process.execFile(cmd, [] , {shell: true} );
+       appendOutput("Processing......");
+       child.on('error', function(err) {
+           appendOutput('stderr: '+err );
+       });
+
+       child.stdout.on('data', function (data) {
+           appendOutput(data);
+       });
+
+       child.stderr.on('data', function (data) {
+           appendOutput(data );
+       });
+
+       return new Promise((resolve, reject) => {
+           child.on('close', function (code) {
+               console.log(`code is: ${code}`);
+               if (code == 0){
+                   setStatus(completeMessage);
+                   resolve(1);  
+               }
+               else{
+                   setStatus('Exited with error code ' + code);
+                   resolve(-1);
+               }
+           });
+       });
+   }
+</script>
+<!--
+ <div class="inner">
+ <h0>My-Flection</h0>
+ <button id="openBtn">Open</button>
+ <script>
+    require('./renderer.js')
+ </script>
+ </div>
+ </section>
+
+
+<div class="inner">
+<h0>My-Flection</h0>
+<a href="./test.sh">click me</a>
+</div>
+
+</section>
+-->
+ <!-- One -->
+ <section id="one" class="wrapper style2 fullscreen fade-up">
+ <a href="#" class="image"><img src="images/loading.gif" alt="" width="200" height="200" data-position="center center" /></a>
+ <div class="inner">
+ <h1>Loading...</h1>
+ <ul class="actions">
+ <li><a href="#two" class="button scrolly">Ready</a></li>
+ </ul>
+ </div>
+ </section>
+
+ <!-- Two -->
+ <section id="two" class="wrapper style3 fade-up">
+ <div class="inner">
+ <h2>Recommendation result</h2>
+ <p> Here's our recommendation for today's outfit! Let us know how you like :) </p>
+ <div class="features">
+ <section>
+ <span class="icon major fa-code"></span>
+ <h3>Outer 1</h3>
+ <p>White puffer jacket</p>
+ </section>
+ <section>
+ <span class="icon major fa-lock"></span>
+ <h3>Outer 2</h3>
+ <p>Black leather jacket</p>
+ </section>
+ <section>
+ <span class="icon major fa-cog"></span>
+ <h3>Top 1</h3>
+ <p>Pink sweater</p>
+ </section>
+ <section>
+ <span class="icon major fa-desktop"></span>
+ <h3>Top 2</h3>
+ <p>White t-shirt</p>
+ </section>
+ <section>
+ <span class="icon major fa-chain"></span>
+ <h3>Bottom </h3>
+ <p>Blue long jeans</p>
+ </section>
+ <section>
+ <span class="icon major fa-diamond"></span>
+ <h3>Accessory</h3>
+ <p>Umbrella</p>
+ </section>
+ </div>
+ <ul class="actions">
+ <li><a href="#one" class="button scrolly">Get another recommendation</a></li>
+ <li><a href="#three" class="button scrolly">Done</a></li>
+ </ul>
+ </div>
+ </section>
+
+ <!-- Three -->
+ <section id="three" class="wrapper style1 fade-up">
+ <div class="inner">
+ <h2>Hope you have a wonderful day!</h2>
+ <p> Give us some feedbacks</p>
+ <div class="split style1">
+ <section>
+ <form method="post" action="#">
+ <div class="field half first">
+ <label for="message">Message</label>
+ <textarea name="message" id="message" rows="5"></textarea>
+ </div>
+ <ul class="actions">
+ <li><a href="" class="button submit">Send Message</a></li>
+ </ul>
+ </form>
+ </section>
+ <section>
+ <ul class="Who made this???">
+ <li>
+ <h3>People</h3>
+ <span>Wonho, Ramzi, Jeremy, Yun<br />
+ </li>
+ <li>
+ <h3>Address</h3>
+ <span>Somewhere in Pittsburgh<br />
+ </li>
+ </ul>
+ </section>
+ </div>
+ </div>
+ </section>
+
+ </div>
+
+ <!-- Footer -->
+ <footer id="footer" class="wrapper style1-alt">
+ <div class="inner">
+ <ul class="menu">
+ <li>&copy; Untitled. All rights reserved.</li><li>Design: Yun</a></li>
+ </ul>
+ </div>
+ </footer>
+
+ <!-- Scripts -->
+ <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
+ <script src="assets/js/jquery.scrollex.min.js"></script>
+ <script src="assets/js/jquery.scrolly.min.js"></script>
+ <script src="assets/js/skel.min.js"></script>
+ <script src="assets/js/util.js"></script>
+ <script src="assets/js/main.js"></script>
+ </body>
+</html>

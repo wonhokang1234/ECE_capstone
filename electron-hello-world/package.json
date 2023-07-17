@@ -1,0 +1,31 @@
+{
+  "name": "electron-tutorial-app",
+  "productName": "Electron tutorial app",
+  "description": "Application for electron tutorials",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "author": "Christian Engvall",
+  "devDependencies": {
+    "electron": "^18.1.0",
+    "electron-packager": "^15.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crilleengvall/electron-tutorial-app.git"
+  },
+  "scripts": {
+    "build": { 
+      "linux": {
+        "target": [
+          "deb",
+          "rpm"
+        ],
+        "category": "Utility",
+        "asarUnpack": [
+          "**node_modules/sharp/**"
+        ]
+      }
+    }
+  }
+}

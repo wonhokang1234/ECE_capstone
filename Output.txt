@@ -1,0 +1,41 @@
+CurrentJsonResponse {
+  location: Location {
+    name: 'Pittsburgh',
+    region: 'Pennsylvania',
+    country: 'USA',
+    lat: 40.43,
+    lon: -79.92,
+    tzId: 'America/New_York',
+    localtimeEpoch: 1649255330,
+    localtime: '2022-04-06 10:28'
+  },
+  current: Current {
+    lastUpdatedEpoch: 1649254500,
+    lastUpdated: '2022-04-06 10:15',
+    tempC: 10.6,
+    tempF: 51.1,
+    isDay: 1,
+    condition: Condition {
+      text: 'Overcast',
+      icon: '//cdn.weatherapi.com/weather/64x64/day/122.png',
+      code: 1009
+    },
+    windMph: 8.1,
+    windKph: 13,
+    windDegree: 130,
+    windDir: 'SE',
+    pressureMb: 1007,
+    pressureIn: 29.73,
+    precipMm: 0,
+    precipIn: 0,
+    humidity: 89,
+    cloud: 100,
+    feelslikeC: 30.9,
+    feelslikeF: 100.8,
+    visKm: 16,
+    visMiles: 9,
+    uv: 3,
+    gustMph: 6,
+    gustKph: 9.7
+  }
+}
